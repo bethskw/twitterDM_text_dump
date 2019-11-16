@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 use strict; 
-use Data::Dumper;
 use utf8;
 use JSON;
 
@@ -35,18 +34,8 @@ binmode(STDOUT, "encoding(UTF-8)"); # seems to help with emojis or something
 my $j = 0; # unique identifier bc conversationId is not guaranteed unique
 
 foreach my $convo (@dms){
-
-# TODO properly name files
-#    next unless $convo->{dmConversation}{conversationId} eq '16984777-368750485';
-
-
-#    next unless $convo->{dmConversation}{conversationId} eq '16984777-368750485';
-
     print "conversation ID: ", $convo->{dmConversation}{conversationId}, "\n\n";
-
-    
     my @lines;
-
 
     foreach my $msg (@{$convo->{dmConversation}->{messages}}){
         unshift(@lines, "$msg->{messageCreate}->{createdAt} | $msg->{messageCreate}->{senderId} : $msg->{messageCreate}->{text}\n");
